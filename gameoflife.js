@@ -37,14 +37,66 @@ for (let i = 0; i < area.length; i++) {
 area2 = [];
 
 // generuojame antrą table
-for (let i = 0; i < 5; i++) {
+for (let Y = 0; Y < 5; Y++) {
     area2.push([]);
-    for (let a = 0; a < 5; a++) {
-        if (area[i][a] == " ") {
-            area2[i].push(" ");
-        } else {
-            area2[i].push("0");
+    for (let X = 0; X < 5; X++) {
+        let count = 0;
+        // if (area[Y][X] == " ") {
+        //     // area2[Y].push(" ");
+        // }
+
+        if (X > 0 && Y > 0) {
+            if (area[Y - 1][X - 1] == "X") {
+                count++;
+            }
         }
+
+        if (Y > 0) {
+            if (area[Y - 1][X] == "X") {
+                count++;
+            }
+        }
+
+        if (Y > 0 && X < area.length - 1) {
+            if (area[Y - 1][X + 1] == "X") {
+                count++;
+            }
+        }
+
+        if (X > 0) {
+            if (area[Y][X - 1] == "X") {
+                count++;
+            }
+        }
+
+        if (X < area.length - 1) {
+            if (area[Y][X + 1] == "X") {
+                count++;
+            }
+        }
+
+        if (Y < area[Y].length - 1 && X > 0) {
+            if (area[Y + 1][X - 1] == "X") {
+                count++;
+            }
+        }
+        if (Y < area[Y].length - 1) {
+            if (area[Y + 1][X] == "X") {
+                count++;
+            }
+        }
+
+        if (Y < area[Y].length - 1 && X < area.length - 1) {
+            if (area[Y + 1][X + 1] == "X") {
+                count++;
+            }
+        }
+
+
+
+
+
+        area2[Y].push(count);
     }
 }
 
