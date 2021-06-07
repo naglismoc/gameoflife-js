@@ -94,9 +94,18 @@ for (let Y = 0; Y < 5; Y++) {
 
 
 
+        //  Any live cell with two or three live neighbours survives.
+        //  Any dead cell with three live neighbours becomes a live cell.
+        //  All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
+        if ((count == 2 || count == 3) && area[Y][X] == "X") {
+            area2[Y].push('X');
+        } else if (count == 3 && area[Y][X] == " ") {
+            area2[Y].push('X');
+        } else {
+            area2[Y].push(' ');
+        }
 
-        area2[Y].push(count);
     }
 }
 
