@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game,
+#game td {
+  border: 1px solid black;
+}
+
+#game {
+  border-collapse: collapse;
+  table-layout: fixed;
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.live {
+  background: grey;
+}
