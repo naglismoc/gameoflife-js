@@ -13,14 +13,10 @@ let count = 1;
 
 
 let width = 15; //tables width
-let height = 15; //tables height
-let times = 50; //how many times game will generate
-let tableWidth = '400px'; // max-width limited to 100vw
-let tableHeight = '400px'; // max-height limited to 100vh
-let timeInterval = 250;
+let height = 5; //tables height
+let times = 10; //how many times game will generate
 
 gameOfLife(); // starts the game of life
-
 
 
 
@@ -48,11 +44,8 @@ function firstTable(area) {
 }
 
 
-async function lifeBegins(area) {
-    // for (let era = 1; era < times; era++) {
-    let era = 0;
-    while (true) {
-        era++;
+function lifeBegins(area) {
+    for (let era = 1; era < times; era++) {
         area.push([]);
         for (let Y = 0; Y < height; Y++) {
             area[era].push([]);
@@ -71,12 +64,7 @@ async function lifeBegins(area) {
             console.log("pasiekėme periodinį pasikartojamumą");
             break;
         }
-        await sleep(500);
     }
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function hasOscillation(area) {
@@ -118,7 +106,16 @@ function setCellValue(area, era, X, Y, count) {
 }
 
 
-
+function printTable(area, era) {
+    for (let i = 0; i < area[era].length; i++) {
+        let row = "";
+        for (let a = 0; a < area[era][i].length; a++) {
+            row += "[" + area[era][i][a] + "]";
+        }
+        console.log(row, i);
+    }
+    console.log('------------------');
+}
 
 function neighborCount(society, row, col) {
     count = 0;
@@ -136,34 +133,4 @@ function neighborCount(society, row, col) {
         }
     }
     return count;
-}
-
-function printTable(area, era) {
-    for (let i = 0; i < area[era].length; i++) {
-        let row = "";
-        for (let a = 0; a < area[era][i].length; a++) {
-            row += "[" + area[era][i][a] + "]";
-        }
-        console.log(row, i);
-    }
-    console.log('------------------');
-    buildTable(area[era]);
-}
-
-function buildTable(array) {
-    let html = ``;
-    for (let row = 0; row < array.length; row++) {
-        html += `<tr>`;
-        for (let column = 0; column < array[0].length; column++) {
-            if (array[row][column] == '■')
-                html += `<td class="live"></td>`;
-            else
-                html += `<td></td>`;
-        }
-        html += `</tr>`;
-    }
-
-    let table = document.getElementById('game');
-    table.innerHTML = html;
-    table.style = `width: ${tableWidth}; height: ${tableHeight}`;
 }
